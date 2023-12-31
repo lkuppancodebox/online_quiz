@@ -1,7 +1,8 @@
 import google.generativeai as genai
+import os
 
 def send_query_to_ai (prompt):
-    API_KEY=st.secrets["API_KEY"]
+    API_KEY = os.environ.get('API_KEY')
     try:
         genai.configure(api_key=API_KEY)
         model = genai.GenerativeModel('gemini-pro')
