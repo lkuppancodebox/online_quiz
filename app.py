@@ -6,7 +6,6 @@ quiz_dict = {}
 current_question = 1
 score = 0
 
-
 def update_question():
     print(quiz_dict[current_question])
     question.object = str(current_question) +". "+ quiz_dict[current_question]["question"]
@@ -51,7 +50,6 @@ def next_question(event):
         options.disabled = True
         next_button.disabled = True
         sys.exit()
-
 
 def generate_quiz(event):
     global quiz_dict, current_question
@@ -111,4 +109,5 @@ next_button.on_click(next_question)
 app_layout = pn.Column(layout)
 
 # Serve the Panel app
-app_layout.servable(title="Quiz Panel").show()
+if __name__ == "__main__":
+    pn.serve(app, title="Quiz Panel").show()
