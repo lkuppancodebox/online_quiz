@@ -6,11 +6,6 @@ quiz_dict = {}
 current_question = 1
 score = 0
 
-async def acquire_write_lock():
-    await pn.io.curdoc().add_next_tick_callback(lambda: None)
-
-async def release_write_lock(lock):
-    await pn.io.curdoc().add_next_tick_callback(lambda: None)
 
 def update_question():
     print(quiz_dict[current_question])
@@ -56,6 +51,7 @@ def next_question(event):
         options.disabled = True
         next_button.disabled = True
         sys.exit()
+
 
 def generate_quiz(event):
     global quiz_dict, current_question
@@ -115,5 +111,4 @@ next_button.on_click(next_question)
 app_layout = pn.Column(layout)
 
 # Serve the Panel app
-if __name__ == "__main__":
-    pn.serve(app, title="Quiz Panel").show()
+app_layout.servable(title="Quiz Panel").show()
