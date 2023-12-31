@@ -6,6 +6,12 @@ quiz_dict = {}
 current_question = 1
 score = 0
 
+async def acquire_write_lock():
+    await panel.io.curdoc().add_next_tick_callback(lambda: None)
+
+async def release_write_lock(lock):
+    await panel.io.curdoc().add_next_tick_callback(lambda: None)
+
 def update_question():
     print(quiz_dict[current_question])
     question.object = str(current_question) +". "+ quiz_dict[current_question]["question"]
